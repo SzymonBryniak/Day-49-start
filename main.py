@@ -40,12 +40,16 @@ job_search.send_keys(Keys.ENTER)
 time.sleep(3)
 easy_apply = driver.find_element(By.ID, value='searchFilter_applyWithLinkedin')
 easy_apply.click()
+time.sleep(3)
 
 
+easy_apply_job = driver.find_element(By.XPATH, value='/html/body/div[7]/div[3]/div[4]/div/div/main/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div[1]/div/div[1]/div/div[5]/div/div/div/button')
+easy_apply_job.click()
+time.sleep(3)
 
 
+mobile = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/div/div[1]/div[5]/div/div/div[1]/div/input")
+mobile.send_keys("07877611724")
 
-
-
-
-
+location = driver.find_element(By.XPATH, value='//*[@id="single-typeahead-entity-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4085306280-10291243194-location-GEO-LOCATION"]')
+location.send_keys("Greater London, England, United Kingdom")
