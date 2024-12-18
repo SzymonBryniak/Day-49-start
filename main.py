@@ -43,13 +43,36 @@ easy_apply.click()
 time.sleep(3)
 
 
-easy_apply_job = driver.find_element(By.XPATH, value='/html/body/div[7]/div[3]/div[4]/div/div/main/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div[1]/div/div[1]/div/div[5]/div/div/div/button')
+easy_apply_job = driver.find_element(By.XPATH, value='/html/body/div[7]/div[3]/div[4]/div/div/main/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div[1]/div/div[1]/div/div[6]/div/div/div/button')
 easy_apply_job.click()
 time.sleep(3)
 
+try:
+  mobile = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/div/div/div[4]/div/div/div[1]/div/input")
+  mobile.send_keys("07877611724")
+except:
+  print('element not found')
 
-mobile = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/div/div[1]/div[5]/div/div/div[1]/div/input")
-mobile.send_keys("07877611724")
+try:
+  location = driver.find_element(By.XPATH, value='//*[@id="single-typeahead-entity-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4085306280-10291243194-location-GEO-LOCATION"]')
+  location.send_keys("Greater London, England, United Kingdom")
+except:
+  print('element not found')
 
-location = driver.find_element(By.XPATH, value='//*[@id="single-typeahead-entity-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4085306280-10291243194-location-GEO-LOCATION"]')
-location.send_keys("Greater London, England, United Kingdom")
+
+next = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/footer/div[2]/button")
+next.click()
+time.sleep(2)
+
+next.click()
+review = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/footer/div[2]/button[2]")
+
+
+apply_dialog = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div")
+print(len(apply_dialog.find_elements(By.TAG_NAME, value="button")))
+
+
+X = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/button")
+X.click()
+
+dialog_save = driver.find_element(By.XPATH, value="/html/body/div[4]/div[2]/div/div[3]/button[2]")
