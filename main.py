@@ -17,33 +17,6 @@ driver.get("https://www.linkedin.com/feed/")
 
 # sign_in = driver.find_element(By.CLASS_NAME, value="nav__button-secondary btn-secondary-emphasis btn-md")
 # print(sign_in)
-username = driver.find_element(By.ID, value="username")
-password = driver.find_element(By.ID, value="password")
-
-# wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH, ".//iframe[not(@name) and not(@id)]")))
-
-sign_in = driver.find_element(By.XPATH, value='//*[@id="organic-div"]/form/div[4]/button')
-username.send_keys("szymonbryniak8@gmail.com")
-password.send_keys("Password_12345!")
-time.sleep(5)
-sign_in.click()
-
-jobs = driver.find_element(By.XPATH, value='//*[@id="global-nav"]/div/nav/ul/li[3]/a')
-jobs.click()
-time.sleep(3)
-#################### job search sometimes not found
-job_search = driver.find_element(By.XPATH, value='/html/body/div[7]/header/div/div/div/div[2]/div[2]/div/div/input[1]')
-job_search.click()
-job_search.send_keys("Python Developer")
-job_search.send_keys(Keys.ENTER)
-
-time.sleep(3)
-easy_apply = driver.find_element(By.ID, value='searchFilter_applyWithLinkedin')
-easy_apply.click()
-time.sleep(3)
-
-####################
-
 
 def dialog_check():
   apply_dialog = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div")
@@ -52,52 +25,113 @@ def dialog_check():
     return True
 
 
+username = driver.find_element(By.ID, value="username")
+password = driver.find_element(By.ID, value="password")
+sign_in = driver.find_element(By.XPATH, value='//*[@id="organic-div"]/form/div[4]/button')
+username.send_keys("szymonbryniak8@gmail.com")
+password.send_keys("Password_12345!")
+time.sleep(5)
+sign_in.click()
+jobs = driver.find_element(By.XPATH, value='//*[@id="global-nav"]/div/nav/ul/li[3]/a')
+jobs.click()
+time.sleep(3)
+#################### job search sometimes not found
+try:
+  job_search = driver.find_element(By.XPATH, value='/html/body/div[7]/header/div/div/div/div[2]/div[2]/div/div/input[1]')
+except:
+  job_search = driver.find_element(By.XPATH, value='/html/body/div[6]/header/div/div/div/div[2]/div[2]/div/div/input[1]')
+
+job_search.send_keys("Python Developer")
+job_search.send_keys(Keys.ENTER)
+
+time.sleep(2)
+easy_apply = driver.find_element(By.ID, value='searchFilter_applyWithLinkedin')
+easy_apply.click()
+time.sleep(2)
+
+#################### EASY APPLY JOB
 try:
   easy_apply_job = driver.find_element(By.XPATH, value='/html/body/div[7]/div[3]/div[4]/div/div/main/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div[1]/div/div[1]/div/div[6]/div/div/div/button')
   easy_apply_job.click()
-  time.sleep(3)
-except:
-  easy_apply_job = driver.find_element(By.XPATH, value='/html/body/div[7]/div[3]/div[4]/div/div/main/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div[1]/div/div[1]/div/div[5]/div/div/div/button')
-  easy_apply_job.click()
-  time.sleep(3)
-
-####################
-try:
-  mobile = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/div/div/div[4]/div/div/div[1]/div/input")
-  mobile.send_keys("07877611724")
-except:
-  print('element not found')
-
-####################
-try:
-  location = driver.find_element(By.XPATH, value='//*[@id="single-typeahead-entity-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4085306280-10291243194-location-GEO-LOCATION"]')
-  location.send_keys("Greater London, England, United Kingdom")
-except:
-  print('element not found')
-
-####################
-try:
-  next = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/footer/div[2]/button")
-  next.click()
   time.sleep(2)
 except:
-  print('element not found')
-#################### review sometimes not found
+  print('element not found: easy apply 1 58')
 
 try:
-  review = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/footer/div[2]/button[2]")
-  review.click()
+  easy_apply_job = driver.find_element(By.XPATH, value='/html/body/div[7]/div[3]/div[4]/div/div/main/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div[1]/div/div[1]/div/div[5]/div/div/div/button')
+  easy_apply_job.click()
+  time.sleep(2)
 except:
-  submit = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div/form/footer/div[3]/button")
-  submit.click()
+  print('element not found: easy apply 2 65')
+
+try:
+  easy_apply_job = driver.find_element(By.XPATH, value='/html/body/div[6]/div[3]/div[4]/div/div/main/div/div[2]/div[2]/div/div[2]/div/div[1]/div/div[1]/div/div[1]/div/div[5]/div/div/div/button')
+  easy_apply_job.click()
+  time.sleep(2)
+except:
+  print('elemenet not found: easy apply 3 72')
+####################
+
+def fill_in():
+  #################### mobile
+  try:
+    mobile = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/div/div/div[4]/div/div/div[1]/div/input")
+    mobile.send_keys("07877611724")
+    print('mobile number entered: 80')
+    time.sleep(2)
+  except:
+    print('element not found: mobile 82')
+
+  try:
+    next = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/footer/div[2]/button")
+    next.click()
+    time.sleep(2)
+  except:
+    print('element not found: next')
+
+  #################### location
+  try:
+    location = driver.find_element(By.XPATH, value='//*[@id="single-typeahead-entity-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4085306280-10291243194-location-GEO-LOCATION"]')
+    location.send_keys("Greater London, England, United Kingdom")
+    time.sleep(2)
+  except:
+    print('element not found:  location')
+
+  #################### next 
+  try:
+    next = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/footer/div[2]/button")
+    next.click()
+    time.sleep(2)
+  except:
+    print('element not found: next')
+  #################### review sometimes not found
+
+  try:
+    review = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div[2]/form/footer/div[2]/button[2]")
+    review.click()
+    time.sleep(2)
+  except:
+    print('element not found: review')
+
+  try:
+    submit = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/div[2]/div/div/form/footer/div[3]/button")
+    submit.click()
+    time.sleep(2)
+  except:
+    X = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/button")
+    X.click()
+    time.sleep(2)
+
+    dialog_save = driver.find_element(By.XPATH, value="/html/body/div[4]/div[2]/div/div[3]/button[2]")
+    dialog_save.click()
+
+  try:
+    X = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/button")
+    X.click()
+    time.sleep(2)
+  except:
+    print('element not found: X')
 
 
-next.click()
 
-
-X = driver.find_element(By.XPATH, value="/html/body/div[4]/div/div/button")
-X.click()
-
-
-dialog_save = driver.find_element(By.XPATH, value="/html/body/div[4]/div[2]/div/div[3]/button[2]")
-dialog_save.click()
+fill_in()
